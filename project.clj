@@ -1,4 +1,4 @@
-(defproject clj-flotr "0.1.0-SNAPSHOT"
+(defproject org.clojars.tisnik/clj-flotr "0.1.0-SNAPSHOT"
   :description "Simple generator for Flotr charts."
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
