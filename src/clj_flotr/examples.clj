@@ -15,6 +15,13 @@
 (require '[hiccup.page         :as page])
 (require '[clj-flotr.generator :as generator])
 
+
+
+;
+; This function creates HTML page named "test-pie-charts.html".
+; That page will contain various pie-charts that shows how
+; the function (generator/pie-chart) could be used.
+;
 (defn test-pie-charts
     "Creates HTML page with various types of pie-charts."
     []
@@ -26,6 +33,7 @@
                 [:title "Test Pie Charts"]
                 [:meta {:name "Generator" :content "Clojure"}]
                 [:meta {:http-equiv "Content-type" :content "text/html; charset=utf-8"}]
+                ; we need to include all Flotr JavaScript libraries.
                 (generator/flotr-scripts nil nil nil)
             ]
             [:body
@@ -59,6 +67,13 @@
                 ] ; </table>
                 [:h1 "done"]]))))
 
+
+
+;
+; This function creates HTML page named "test-stacked-bars.html".
+; That page will contain various pie-charts that shows how
+; the function (generator/stacked-bars) could be used.
+;
 (defn test-stacked-bars
     "Creates HTML page with various types of stacked-bars chart."
     []
@@ -70,6 +85,7 @@
                 [:title "Test Stacked Bars"]
                 [:meta {:name "Generator" :content "Clojure"}]
                 [:meta {:http-equiv "Content-type" :content "text/html; charset=utf-8"}]
+                ; we need to include all Flotr JavaScript libraries.
                 (generator/flotr-scripts nil nil nil)
             ]
             [:body
@@ -105,6 +121,9 @@
                 ] ; </table>
                 [:h1 "done"]]))))
 
+
+
+; You can call example function by using following two lines:
 ;(test-pie-charts)
 ;(test-stacked-bars)
 
