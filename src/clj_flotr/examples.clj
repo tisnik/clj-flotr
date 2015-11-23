@@ -70,6 +70,58 @@
 
 
 ;
+; This function creates HTML page named "test-line-charts.html".
+; That page will contain various line-charts that shows how
+; the function (generator/line-chart) could be used.
+;
+(defn test-line-charts
+    "Creates HTML page with various types of line-charts."
+    []
+    (let [data [{:values [[1 1] [2 2] [3 3]] :label "foo"}
+                {:values [[1 0] [2 5] [3 0]]  :label "bar"}
+                {:values [[1 4] [2 2] [3 4]]  :label "baz"}]]
+        (spit "test-line-charts.html" (page/xhtml
+            [:head
+                [:title "Test Line Charts"]
+                [:meta {:name "Generator" :content "Clojure"}]
+                [:meta {:http-equiv "Content-type" :content "text/html; charset=utf-8"}]
+                ; we need to include all Flotr JavaScript libraries.
+                (generator/flotr-scripts nil nil nil)
+            ]
+            [:body
+                [:h1 "Test Line Charts"]
+                [:table
+                    [:tr
+                        [:td (generator/line-chart "chart1" "300px" "300px" data)]
+                        [:td (generator/line-chart "chart2" "300px" "300px" data
+                                :vertical-lines true)]
+                        [:td (generator/line-chart "chart3" "300px" "300px" data
+                                :horizontal-lines true)]
+                        [:td (generator/line-chart "chart4" "300px" "300px" data
+                                :horizontal-lines true
+                                :vertical-lines true)]
+                    ] ; </tr>
+                    [:tr
+                        [:td (generator/line-chart "chart5" "300px" "300px" data
+                                 :show-legend true)]
+                        [:td (generator/line-chart "chart6" "300px" "300px" data
+                                 :show-legend true
+                                 :legend-position "sw")]
+                        [:td (generator/line-chart "chart7" "300px" "300px" data
+                                 :show-legend true
+                                 :legend-position "ne"
+                                 :legend-background "#D2E8FF")]
+                        [:td (generator/line-chart "chart8" "300px" "300px" data
+                                 :show-legend true
+                                 :legend-position "sw"
+                                 :legend-background "#FFFFFF")]
+                    ] ; </tr>
+                ] ; </table>
+                [:h1 "done"]]))))
+
+
+
+;
 ; This function creates HTML page named "test-stacked-bars.html".
 ; That page will contain various pie-charts that shows how
 ; the function (generator/stacked-bars) could be used.
@@ -125,5 +177,6 @@
 
 ; You can call example function by using following two lines:
 ;(test-pie-charts)
+;(test-line-charts)
 ;(test-stacked-bars)
 
