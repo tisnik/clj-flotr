@@ -48,6 +48,15 @@
     [datum]
     (for [i (:values datum)] (str "[" (first i) "," (second i) "]")))
 
+(defn data-series-for-line-chart
+    [data]
+    (for [datum data]
+        (str "{data:["
+            (clojure.string/join ","
+                (vals->js datum))
+            "],"
+            "label: '" (:label datum) "'},\n")))
+
 (defn data-series-for-stacked-bars
     [data]
     (for [datum data]
@@ -79,6 +88,33 @@
                   xaxis: {showLabels: false},
                   yaxis: {showLabels: false}, 
                   pie: {show: true, explode: 5},
+                  legend:{
+                      show: "             (bool->string show-legend) ",
+                      position: '"        (or legend-position "ne") "',
+                      backgroundColor: '" (or legend-background "#D2E8FF") "',
+                  }});")]])
+
+(defn line-chart
+    "Creates a simple bar chart. Please look at the function named
+     'test-line-charts' how to use line-chart."
+    [id width height data & {:keys [horizontal-lines
+                                    vertical-lines
+                                    show-legend
+                                    legend-position
+                                    legend-background]}]
+    [:div {:id id :style (str "width:" width ";height:" height)}
+        [:script {:type "text/javascript"}
+            (str "Flotr.draw($('" id "'), [")
+                  (data-series-for-line-chart data)
+                  "], {"
+            (str "
+                  HtmlText: false, 
+                  grid: {
+                      verticalLines:   " (bool->string vertical-lines) ",
+                      horizontalLines: " (bool->string horizontal-lines) "
+                  },
+                  xaxis: {showLabels: true},
+                  yaxis: {showLabels: true}, 
                   legend:{
                       show: "             (bool->string show-legend) ",
                       position: '"        (or legend-position "ne") "',
