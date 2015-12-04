@@ -73,7 +73,9 @@
                                     vertical-lines
                                     show-legend
                                     legend-position
-                                    legend-background]}]
+                                    legend-background
+                                    title
+                                    subtitle]}]
     [:div {:id id :style (str "width:" width ";height:" height)}
         [:script {:type "text/javascript"}
             (str "Flotr.draw($('" id "'), [")
@@ -92,7 +94,10 @@
                       show: "             (bool->string show-legend) ",
                       position: '"        (or legend-position "ne") "',
                       backgroundColor: '" (or legend-background "#D2E8FF") "',
-                  }});")]])
+                  }"
+                  (if title    (str ", title: '" title "'"))
+                  (if subtitle (str ", subtitle: '" subtitle "'"))
+                  "});")]])
 
 (defn line-chart
     "Creates a simple bar chart. Please look at the function named
