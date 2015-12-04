@@ -116,6 +116,23 @@
                                  :legend-position "sw"
                                  :legend-background "#FFFFFF")]
                     ] ; </tr>
+                    [:tr
+                        [:td (generator/line-chart "chart9" "300px" "300px" data
+                                 :title "Chart title")]
+                        [:td (generator/line-chart "chart10" "300px" "300px" data
+                                 :subtitle "Chart subtitle")]
+                        [:td (generator/line-chart "chart11" "300px" "300px" data
+                                 :title "Chart title"
+                                 :subtitle "Chart subtitle")]
+                        [:td (generator/line-chart "chart12" "300px" "300px" data
+                                 :title "Chart title"
+                                 :subtitle "Chart subtitle"
+                                 :horizontal-lines true
+                                 :vertical-lines true
+                                 :show-legend true
+                                 :legend-position "sw"
+                                 :legend-background "#FFFFFF")]
+                    ] ; </tr>
                 ] ; </table>
                 [:h1 "done"]]))))
 
