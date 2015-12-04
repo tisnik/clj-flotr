@@ -10,10 +10,19 @@
 ;      Pavel Tisnovsky
 ;
 
-(ns clj-flotr.core-test
+(ns clj-flotr.generator-test
   (:require [clojure.test :refer :all]
-            [clj-flotr.core :refer :all]))
+            [clj-flotr.generator :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest test-line-chart-existence
+    (testing "Test if line-chart function exists"
+        (is (function? line-chart))))
+
+(deftest test-pie-chart-existence
+    (testing "Test if pie-chart function exists"
+        (is (function? pie-chart))))
+
+(deftest test-stacked-bars-existence
+    (testing "Test if stacked-bars function exists"
+        (is (function? stacked-bars))))
+
