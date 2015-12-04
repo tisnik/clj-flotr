@@ -66,6 +66,14 @@
             "],"
             "label: '" (:label datum) "'},\n")))
 
+(defn legend-part
+    [show-legend legend-position legend-background]
+    (str "legend:{
+              show: "             (bool->string show-legend) ",
+              position: '"        (or legend-position "ne") "',
+              backgroundColor: '" (or legend-background "#D2E8FF") "',
+          }"))
+
 (defn pie-chart
     "Creates a simple pie chart. Please look at the function named
      'test-pie-charts' how to use pie-chart."
@@ -89,12 +97,8 @@
                   },
                   xaxis: {showLabels: false},
                   yaxis: {showLabels: false}, 
-                  pie: {show: true, explode: 5},
-                  legend:{
-                      show: "             (bool->string show-legend) ",
-                      position: '"        (or legend-position "ne") "',
-                      backgroundColor: '" (or legend-background "#D2E8FF") "',
-                  }"
+                  pie: {show: true, explode: 5},"
+                  (legend-part show-legend legend-position legend-background)
                   (if title    (str ", title: '" title "'"))
                   (if subtitle (str ", subtitle: '" subtitle "'"))
                   "});")]])
@@ -121,12 +125,8 @@
                       horizontalLines: " (bool->string horizontal-lines) "
                   },
                   xaxis: {showLabels: true},
-                  yaxis: {showLabels: true}, 
-                  legend:{
-                      show: "             (bool->string show-legend) ",
-                      position: '"        (or legend-position "ne") "',
-                      backgroundColor: '" (or legend-background "#D2E8FF") "',
-                  }"
+                  yaxis: {showLabels: true},"
+                  (legend-part show-legend legend-position legend-background)
                   (if title    (str ", title: '" title "'"))
                   (if subtitle (str ", subtitle: '" subtitle "'"))
                   "});")]])
@@ -151,10 +151,7 @@
                   },
                   xaxis: {showLabels: true},
                   yaxis: {showLabels: true}, 
-                  bars: {show: true, stacked: true, barWidth: " (or bar-width "0.5") "},
-                  legend:{
-                      show: "             (bool->string show-legend) ",
-                      position: '"        (or legend-position "ne") "',
-                      backgroundColor: '" (or legend-background "#D2E8FF") "',
-                  }});")]])
+                  bars: {show: true, stacked: true, barWidth: " (or bar-width "0.5") "},"
+                  (legend-part show-legend legend-position legend-background)
+                  "});")]])
 
