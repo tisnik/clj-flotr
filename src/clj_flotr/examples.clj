@@ -64,6 +64,21 @@
                                  :legend-position "sw"
                                  :legend-background "#FFFFFF")]
                     ] ; </tr>
+                    [:tr
+                        [:td (generator/pie-chart "chart9" "300px" "300px" data
+                                 :title "Chart title")]
+                        [:td (generator/pie-chart "chart10" "300px" "300px" data
+                                 :subtitle "Chart subtitle")]
+                        [:td (generator/pie-chart "chart11" "300px" "300px" data
+                                 :title "Chart title"
+                                 :subtitle "Chart subtitle")]
+                        [:td (generator/pie-chart "chart12" "300px" "300px" data
+                                 :show-legend true
+                                 :legend-position "sw"
+                                 :legend-background "#FFFFFF"
+                                 :title "Chart title"
+                                 :subtitle "Chart subtitle")]
+                    ] ; </tr>
                 ] ; </table>
                 [:h1 "done"]]))))
 
