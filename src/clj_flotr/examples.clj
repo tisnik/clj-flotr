@@ -175,9 +175,8 @@
 
 
 
-; You can call example function by using following two lines:
+; You can call example function by using following three lines:
 ;(test-pie-charts)
 ;(test-line-charts)
 ;(test-stacked-bars)
-
 
