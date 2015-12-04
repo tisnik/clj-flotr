@@ -74,6 +74,13 @@
               backgroundColor: '" (or legend-background "#D2E8FF") "',
           }"))
 
+(defn grid-part
+    [horizontal-lines vertical-lines]
+    (str "grid: {
+              verticalLines:   " (bool->string vertical-lines) ",
+              horizontalLines: " (bool->string horizontal-lines) "
+          },"))
+
 (defn pie-chart
     "Creates a simple pie chart. Please look at the function named
      'test-pie-charts' how to use pie-chart."
@@ -90,11 +97,9 @@
                   (data-series-for-pie-chart data)
                   "], {"
             (str "
-                  HtmlText: false, 
-                  grid: {
-                      verticalLines:   " (bool->string vertical-lines) ",
-                      horizontalLines: " (bool->string horizontal-lines) "
-                  },
+                  HtmlText: false,"
+                  (grid-part horizontal-lines vertical-lines)
+                  "
                   xaxis: {showLabels: false},
                   yaxis: {showLabels: false}, 
                   pie: {show: true, explode: 5},"
@@ -119,11 +124,9 @@
                   (data-series-for-line-chart data)
                   "], {"
             (str "
-                  HtmlText: false, 
-                  grid: {
-                      verticalLines:   " (bool->string vertical-lines) ",
-                      horizontalLines: " (bool->string horizontal-lines) "
-                  },
+                  HtmlText: false,"
+                  (grid-part horizontal-lines vertical-lines)
+                  "
                   xaxis: {showLabels: true},
                   yaxis: {showLabels: true},"
                   (legend-part show-legend legend-position legend-background)
@@ -144,11 +147,9 @@
                   (data-series-for-stacked-bars data)
                   "], {"
             (str "
-                  HtmlText: false, 
-                  grid: {
-                      verticalLines:   " (bool->string vertical-lines) ",
-                      horizontalLines: " (bool->string horizontal-lines) "
-                  },
+                  HtmlText: false,"
+                  (grid-part horizontal-lines vertical-lines)
+                  "
                   xaxis: {showLabels: true},
                   yaxis: {showLabels: true}, 
                   bars: {show: true, stacked: true, barWidth: " (or bar-width "0.5") "},"
