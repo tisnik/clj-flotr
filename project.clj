@@ -10,7 +10,7 @@
 ;      Pavel Tisnovsky
 ;
 
-(defproject org.clojars.tisnik/clj-flotr "0.2.0-SNAPSHOT"
+(defproject org.clojars.tisnik/clj-flotr "0.2.0"
   :description "Simple generator for Flotr charts."
   :url "https://github.com/tisnik/clj-flotr"
   :license {:name "Eclipse Public License"
