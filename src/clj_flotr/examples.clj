@@ -93,8 +93,8 @@
     "Creates HTML page with various types of line-charts."
     []
     (let [data [{:values [[1 1] [2 2] [3 3]] :label "foo"}
-                {:values [[1 0] [2 5] [3 0]]  :label "bar"}
-                {:values [[1 4] [2 2] [3 4]]  :label "baz"}]]
+                {:values [[1 0] [2 5] [3 0]] :label "bar"}
+                {:values [[1 4] [2 2] [3 4]] :label "baz"}]]
         (spit "test-line-charts.html" (page/xhtml
             [:head
                 [:title "Test Line Charts"]
