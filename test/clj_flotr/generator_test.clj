@@ -54,6 +54,14 @@
     (testing "Test if data-series-for-stacked-bars function exists"
         (is (function? data-series-for-stacked-bars))))
 
+(deftest test-legend-part-existence
+    (testing "Test if legend-part function exists"
+        (is (function? legend-part))))
+
+(deftest test-grid-part-existence
+    (testing "Test if grid-part function exists"
+        (is (function? grid-part))))
+
 ;
 ; Unit tests
 ;
