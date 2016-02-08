@@ -38,6 +38,22 @@
     (testing "Test if bool->string function exists"
         (is (function? bool->string))))
 
+(deftest test-data-series-for-pie-chart-existence
+    (testing "Test if data-series-for-pie-chart function exists"
+        (is (function? data-series-for-pie-chart))))
+
+(deftest test-vals->js-existence
+    (testing "Test if vals->js function exists"
+        (is (function? vals->js))))
+
+(deftest test-data-series-for-line-chart-existence
+    (testing "Test if data-series-for-line-chart function exists"
+        (is (function? data-series-for-line-chart))))
+
+(deftest test-data-series-for-stacked-bars-existence
+    (testing "Test if data-series-for-stacked-bars function exists"
+        (is (function? data-series-for-stacked-bars))))
+
 ;
 ; Unit tests
 ;
