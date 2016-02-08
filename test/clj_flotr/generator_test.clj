@@ -1,5 +1,5 @@
 ;
-;  (C) Copyright 2015  Pavel Tisnovsky
+;  (C) Copyright 2015, 2016  Pavel Tisnovsky
 ;
 ;  All rights reserved. This program and the accompanying materials
 ;  are made available under the terms of the Eclipse Public License v1.0
@@ -25,4 +25,16 @@
 (deftest test-stacked-bars-existence
     (testing "Test if stacked-bars function exists"
         (is (function? stacked-bars))))
+
+(deftest test-script-existence
+    (testing "Test if script function exists"
+        (is (function? script))))
+
+(deftest test-flotr-scripts-existence
+    (testing "Test if flotr-scripts function exists"
+        (is (function? flotr-scripts))))
+
+(deftest test-bool->string-existence
+    (testing "Test if bool->string function exists"
+        (is (function? bool->string))))
 
