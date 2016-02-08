@@ -38,3 +38,24 @@
     (testing "Test if bool->string function exists"
         (is (function? bool->string))))
 
+;
+; Unit tests
+;
+
+(deftest test-bool->string-1
+    (testing "Test the function bool->string"
+        (are [x y] (= x y)
+            "false" (bool->string false)
+            "false" (bool->string nil))))
+
+(deftest test-bool->string-2
+    (testing "Test the function bool->string"
+        (are [x y] (= x y)
+            "true" (bool->string true)
+            "true" (bool->string 42)
+            "true" (bool->string "foobar")
+            "true" (bool->string '())
+            "true" (bool->string [])
+            "true" (bool->string {})
+            "true" (bool->string #{}))))
+
