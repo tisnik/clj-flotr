@@ -7,7 +7,7 @@
 ;  http://www.eclipse.org/legal/epl-v10.html
 ;
 ;  Contributors:
-;      Pavel Tisnovsky
+;      Pavel Tisnovsky
 ;
 
 (ns clj-flotr.generator)
@@ -22,11 +22,11 @@
 (defn flotr-scripts
     "Use this function to get part of HTML header that contains links
      to Flotr JavaScript libraries.
-     Usage: (flotr-script nil \"flotr/lib\")
-            (flotr-script \"http://foo.bar.bz\" \"flotr/lib\")
-            (flotr-script \"http://foo.bar.bz\" \"flotr/lib\" true)"
+     Usage: (flotr-scripts nil \"flotr/lib\" false)
+            (flotr-scripts \"http://foo.bar.bz\" \"flotr/lib\" false)
+            (flotr-scripts \"http://foo.bar.bz\" \"flotr/lib\" true)"
     [url path use-debug-variant?]
-    (let [prefix (if url (str url ":" path "/")
+    (let [prefix (if url (str url "/" path "/")
                          (if path (str path "/") ""))]
           (seq [(script prefix "lib/prototype-1.6.0.2.js")
                 (script prefix "lib/canvas2image.js")
@@ -46,7 +46,8 @@
 
 (defn vals->js
     [datum]
-    (for [i (:values datum)] (str "[" (first i) "," (second i) "]")))
+    (for [i (:values datum)]
+        (str "[" (first i) "," (second i) "]")))
 
 (defn data-series-for-line-chart
     [data]
