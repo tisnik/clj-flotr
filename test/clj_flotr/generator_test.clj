@@ -158,3 +158,9 @@
             (data-series-for-line-chart nil) '()
             (data-series-for-line-chart [])  '())))
 
+(deftest test-data-series-for-stacked-bars-1
+    (testing "Test the function data-series-for-stacked-bars"
+        (are [x y] (= x y)
+            (data-series-for-stacked-bars nil) '()
+            (data-series-for-stacked-bars [])  '())))
+
