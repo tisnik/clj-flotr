@@ -83,3 +83,14 @@
             "true" (bool->string {})
             "true" (bool->string #{}))))
 
+(deftest test-script
+    (testing "Test the function script"
+        (are [x y] (= x y)
+            [:script {:type "text/javascript" :src ""}]       (script nil nil)
+            [:script {:type "text/javascript" :src ""}]       (script "" "")
+            [:script {:type "text/javascript" :src "aaa"}]    (script "aaa" "")
+            [:script {:type "text/javascript" :src "bbb"}]    (script "" "bbb")
+            [:script {:type "text/javascript" :src "aaa"}]    (script "aaa" nil)
+            [:script {:type "text/javascript" :src "bbb"}]    (script nil "bbb")
+            [:script {:type "text/javascript" :src "aaabbb"}] (script "aaa" "bbb"))))
+
