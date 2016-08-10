@@ -152,3 +152,9 @@
             (data-series-for-pie-chart [{:values :v1 :label nil}])
                                        ["{data:[[1,:v1]], label: ''},\n"])))
 
+(deftest test-data-series-for-line-chart-1
+    (testing "Test the function data-series-for-line-chart"
+        (are [x y] (= x y)
+            (data-series-for-line-chart nil) '()
+            (data-series-for-line-chart [])  '())))
+
