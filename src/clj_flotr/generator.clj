@@ -15,89 +15,91 @@
 (require '[hiccup.page :as page])
 
 (defn script
-    "Returns Hiccup-compatible vector containing link to JavaScript source."
-    [prefix name]
-    [:script {:type "text/javascript" :src (str prefix name)}])
+  "Returns Hiccup-compatible vector containing link to JavaScript source."
+  [prefix name]
+  [:script {:type "text/javascript", :src (str prefix name)}])
 
 (defn flotr-scripts
-    "Use this function to get part of HTML header that contains links
+  "Use this function to get part of HTML header that contains links
      to Flotr JavaScript libraries.
      Usage: (flotr-scripts nil \"flotr/lib\" false)
             (flotr-scripts \"http://foo.bar.bz\" \"flotr/lib\" false)
             (flotr-scripts \"http://foo.bar.bz\" \"flotr/lib\" true)"
-    [url path use-debug-variant?]
-    (let [prefix (if url (str url "/" path "/")
-                         (if path (str path "/") ""))]
-          (seq [(script prefix "lib/prototype-1.6.0.2.js")
-                (script prefix "lib/canvas2image.js")
-                (script prefix "lib/canvastext.js")
-                (if use-debug-variant?
-                    (script prefix "flotr.debug-0.2.0-alpha.js")
-                    (script prefix "flotr-0.2.0-alpha.js"))])))
+  [url path use-debug-variant?]
+  (let [prefix (if url (str url "/" path "/")
+                       (if path (str path "/") ""))]
+    (seq [(script prefix "lib/prototype-1.6.0.2.js")
+          (script prefix "lib/canvas2image.js")
+          (script prefix "lib/canvastext.js")
+          (if use-debug-variant?
+                     (script prefix "flotr.debug-0.2.0-alpha.js")
+                     (script prefix "flotr-0.2.0-alpha.js"))])))
 
 (defn bool->string
-    [value]
-    (if value "true" "false"))
+  [value]
+  (if value "true" "false"))
 
 (defn data-series-for-pie-chart
-    [data]
-    (for [datum data]
-        (str "{data:[[1," (:values datum) "]], label: '" (:label datum) "'},\n")))
+  [data]
+  (for [datum data]
+    (str "{data:[[1," (:values datum) "]], label: '" (:label datum) "'},\n")))
 
 (defn vals->js
-    [datum]
-    (for [i (:values datum)]
-        (str "[" (first i) "," (second i) "]")))
+  [datum]
+  (for [i (:values datum)]
+    (str "[" (first i) "," (second i) "]")))
 
 (defn data-series-for-line-chart
-    [data]
-    (for [datum data]
-        (str "{data:["
-            (clojure.string/join ","
-                (vals->js datum))
-            "],"
-            "label: '" (:label datum) "'},\n")))
+  [data]
+  (for [datum data]
+    (str "{data:["
+         (clojure.string/join ","
+                              (vals->js datum))
+                              "],"
+                              "label: '" (:label datum)
+                              "'},\n")))
 
 (defn data-series-for-stacked-bars
-    [data]
-    (for [datum data]
-        (str "{data:["
-            (clojure.string/join ","
-                (vals->js datum))
-            "],"
-            "label: '" (:label datum) "'},\n")))
+  [data]
+  (for [datum data]
+    (str "{data:["
+         (clojure.string/join "," (vals->js datum))
+         "],"
+         "label: '"
+         (:label datum)
+         "'},\n")))
 
 (defn legend-part
-    [show-legend legend-position legend-background]
-    (str "legend:{
-              show: "             (bool->string show-legend) ",
-              position: '"        (or legend-position "ne") "',
-              backgroundColor: '" (or legend-background "#D2E8FF") "',
+  [show-legend legend-position legend-background]
+  (str "legend:{
+          show: "             (bool->string show-legend) ",
+            position: '"        (or legend-position "ne") "',
+            backgroundColor: '" (or legend-background "#D2E8FF") "',
           }"))
 
 (defn grid-part
-    [horizontal-lines vertical-lines]
-    (str "grid: {
-              verticalLines:   " (bool->string vertical-lines) ",
+  [horizontal-lines vertical-lines]
+  (str "grid: {
+            verticalLines:   " (bool->string vertical-lines) ",
               horizontalLines: " (bool->string horizontal-lines) "
           },"))
 
 (defn pie-chart
-    "Creates a simple pie chart. Please look at the function named
+  "Creates a simple pie chart. Please look at the function named
      'test-pie-charts' how to use pie-chart."
-    [id width height data & {:keys [horizontal-lines
+  [id width height data & {:keys [horizontal-lines
                                     vertical-lines
                                     show-legend
                                     legend-position
                                     legend-background
                                     title
                                     subtitle]}]
-    [:div {:id id :style (str "width:" width ";height:" height)}
-        [:script {:type "text/javascript"}
-            (str "Flotr.draw($('" id "'), [")
-                  (data-series-for-pie-chart data)
-                  "], {"
-            (str "
+  [:div {:id id, :style (str "width:" width ";height:" height)}
+   [:script {:type "text/javascript"}
+      (str "Flotr.draw($('" id "'), [")
+      (data-series-for-pie-chart data)
+      "], {"
+      (str "
                   HtmlText: false,"
                   (grid-part horizontal-lines vertical-lines)
                   "
@@ -110,44 +112,44 @@
                   "});")]])
 
 (defn line-chart
-    "Creates a simple bar chart. Please look at the function named
+  "Creates a simple bar chart. Please look at the function named
      'test-line-charts' how to use line-chart."
-    [id width height data & {:keys [horizontal-lines
+  [id width height data & {:keys [horizontal-lines
                                     vertical-lines
                                     show-legend
                                     legend-position
                                     legend-background
                                     title
                                     subtitle]}]
-    [:div {:id id :style (str "width:" width ";height:" height)}
-        [:script {:type "text/javascript"}
-            (str "Flotr.draw($('" id "'), [")
-                  (data-series-for-line-chart data)
-                  "], {"
-            (str "
+  [:div {:id id, :style (str "width:" width ";height:" height)}
+   [:script {:type "text/javascript"}
+      (str "Flotr.draw($('" id "'), [")
+      (data-series-for-line-chart data)
+      "], {"
+      (str "
                   HtmlText: false,"
                   (grid-part horizontal-lines vertical-lines)
                   "
                   xaxis: {showLabels: true},
                   yaxis: {showLabels: true},"
-                  (legend-part show-legend legend-position legend-background)
-                  (if title    (str ", title: '" title "'"))
-                  (if subtitle (str ", subtitle: '" subtitle "'"))
+                (legend-part show-legend legend-position legend-background)
+                (if title    (str ", title: '" title "'"))
+                (if subtitle (str ", subtitle: '" subtitle "'"))
                   "});")]])
 
 (defn stacked-bars
-    [id width height data & {:keys [horizontal-lines
+  [id width height data & {:keys [horizontal-lines
                                     vertical-lines
                                     show-legend
                                     legend-position
                                     legend-background
                                     bar-width]}]
-    [:div {:id id :style (str "width:" width ";height:" height)}
-        [:script {:type "text/javascript"}
-            (str "Flotr.draw($('" id "'), [")
-                  (data-series-for-stacked-bars data)
-                  "], {"
-            (str "
+  [:div {:id id, :style (str "width:" width ";height:" height)}
+   [:script {:type "text/javascript"}
+      (str "Flotr.draw($('" id "'), [")
+      (data-series-for-stacked-bars data)
+      "], {"
+      (str "
                   HtmlText: false,"
                   (grid-part horizontal-lines vertical-lines)
                   "
