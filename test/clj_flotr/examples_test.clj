@@ -15,26 +15,26 @@
             [clj-flotr.examples :refer :all]))
 
 (deftest test-line-charts-existence
-    (testing "Test if test-line-charts-function exists"
-        (is (function? test-line-charts))))
+  (testing "Test if test-line-charts-function exists"
+           (is (function? test-line-charts))))
 
 (deftest test-pie-charts-existence
-    (testing "Test if test-pie-charts-function exists"
-        (is (function? test-pie-charts))))
+  (testing "Test if test-pie-charts-function exists"
+           (is (function? test-pie-charts))))
 
 (deftest test-stacked-bars-existence
-    (testing "Test if test-stacked-bars-function exists"
-        (is (function? test-stacked-bars))))
+  (testing "Test if test-stacked-bars-function exists"
+           (is (function? test-stacked-bars))))
 
 (deftest test-line-charts-function
-    (testing "Test the line chart generation"
-        (test-line-charts)))
+  (testing "Test the line chart generation"
+           (test-line-charts)))
 
 (deftest test-pie-charts-function
-    (testing "Test the pie chart generation"
-        (test-pie-charts)))
+  (testing "Test the pie chart generation"
+           (test-pie-charts)))
 
 (deftest test-stacked-bars-function
-    (testing "Test the stacked bars generation"
-        (test-stacked-bars)))
+  (testing "Test the stacked bars generation"
+           (test-stacked-bars)))
 
